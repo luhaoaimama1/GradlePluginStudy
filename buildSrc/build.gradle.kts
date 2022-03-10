@@ -1,34 +1,25 @@
-//https://quickbirdstudios.com/blog/gradle-kotlin-buildsrc-plugin-android/
+//copy:https://github.com/android/gradle-recipes
+
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    `kotlin-dsl`
+    kotlin("jvm") version "1.4.32"
 }
 
 repositories {
-    mavenCentral()
     google()
+    jcenter()
 }
 
-gradlePlugin {
-    plugins {
-        register("test_five_one") {
-            id = "test_five"
-            implementationClass = "Test5"
-        }
-    }
+tasks.withType<KotlinCompile>().configureEach {
+    kotlinOptions.apiVersion = "1.3"
 }
 
 dependencies {
-    /* Example Dependency */
-    /* Depend on the android gradle plugin, since we want to access it in our plugin */
+    implementation("com.android.tools.build:gradle-api:7.0.0")
+    implementation(kotlin("stdlib"))
+    gradleApi()
+}
+dependencies {
     implementation("com.android.tools.build:gradle:7.0.0")
-
-    /* Example Dependency */
-    /* Depend on the kotlin plugin, since we want to access it in our plugin */
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.50")
-
-    /* Depend on the default Gradle API's since we want to build a custom plugin */
-    implementation(gradleApi())
-    implementation(localGroovy())
-    implementation(kotlin("script-runtime"))
-    implementation("org.jetbrains.kotlin:kotlin-scripting-jvm")
 }
