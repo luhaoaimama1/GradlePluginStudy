@@ -2,8 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
-//apply plugin: ClickPlugin
-apply plugin: TestPlugin1
+//apply plugin: Test5.Test5
 
 // todo 放到插件方式  debug
 
